@@ -5,5 +5,7 @@ class Endereco {
   late Cidade cidade;
   late int numero;
   late String bairro;
-  late String apelidoEndereco;
+  late String? apelidoEndereco;
+
+  Endereco({required this.rua, required this.cidade, required this.numero, required this.bairro, this.apelidoEndereco});
 }
