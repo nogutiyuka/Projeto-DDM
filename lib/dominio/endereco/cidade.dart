@@ -1,8 +1,11 @@
-import 'package:app_motorista/dominio/endereco/estado.dart';
-
 class Cidade {
   late String nome;
-  late Estado estado;
 
-  Cidade({required this.nome, required this.estado});
+  Cidade({required this.nome}){
+    eNomeVazio();
+  }
+
+  void eNomeVazio() {
+    if (nome.isEmpty) throw Exception('Nome da cidade não pode ser vazio.');
+  }
 }
