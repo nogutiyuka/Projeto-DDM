@@ -1,9 +1,10 @@
-import 'package:app_motorista/app/dominio/dto/dominio/dtoEndereco.dart';
+
+import 'package:app_motorista/app/dominio/endereco.dart';
 
 class DtoPassageiro {
   late String nome;
   late String telefone;
-  late DTOEndereco enderecoCasa;
+  late Endereco enderecoCasa;
   late dynamic id;
   late String? apelido;
 

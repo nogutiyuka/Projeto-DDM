@@ -6,7 +6,7 @@ import 'package:sqflite/sqflite.dart';
 class DaoEnderecoImpl implements IDAOEndereco {
   late Database database;
   final String salvarSql = '''
-  INSERT INTO cidade (rua, cidade, numero, bairro, apelido_endereco)
+  INSERT INTO endereco (rua, id_cidade, numero, bairro, apelido)
     VALUES (?, ?, ?, ?, ?)
   ''';
 
@@ -15,7 +15,7 @@ class DaoEnderecoImpl implements IDAOEndereco {
   ''';
 
   final String alterarSql = '''
-  UPDATE endereco SET rua = ?, cidade = ?, numero = ?, bairro = ?, apelido_endereco = ?;
+  UPDATE endereco SET rua = ?, id_cidade = ?, numero = ?, bairro = ?, apelido = ?;
   ''';
 
   final String deletarSql = '''
@@ -42,11 +42,11 @@ class DaoEnderecoImpl implements IDAOEndereco {
       return value
           .map((e) => DTOEndereco(
               id: e['id'],
-              rua: e['nome'] as String,
-              cidade: e['estado'] as dynamic,
+              rua: e['rua'] as String,
+              cidade: e['id_cidade'] as dynamic,
               numero: int.parse(e['numero'].toString()),
               bairro: e['bairro'] as String,
-              apelidoEndereco: e["apelidoEndereco"] as String))
+              apelidoEndereco: e["apelido"] as String))
           .toList();
     });
   }

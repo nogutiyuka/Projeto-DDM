@@ -6,7 +6,7 @@ import 'package:sqflite/sqflite.dart';
 class DaoCidadeImpl implements IDAOCidade {
   late Database database;
   final String salvarSql = '''
-  INSERT INTO cidade (nome, estado)
+  INSERT INTO cidade (nome, id_estado)
     VALUES (?, ?)
   ''';
 
@@ -15,7 +15,7 @@ class DaoCidadeImpl implements IDAOCidade {
   ''';
 
   final String alterarSql = '''
-  UPDATE cidade SET nome = ?, estado = ? WHERE id = ?;
+  UPDATE cidade SET nome = ?, id_estado = ? WHERE id = ?;
   ''';
 
   final String deletarSql = '''
@@ -38,7 +38,7 @@ class DaoCidadeImpl implements IDAOCidade {
           .map((e) => DTOCidade(
               id: e['id'],
               nome: e['nome'] as String,
-              estado: e['estado'] as dynamic))
+              estado: e['id_estado'] as dynamic))
           .toList();
     });
   }

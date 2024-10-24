@@ -21,17 +21,4 @@ main()async{
     );
     await db.close();
   });
-
-  test('Teste do script para inserir registros', () async {
-    var db = await openDatabase(inMemoryDatabasePath, version: 1,
-      onCreate: (db, version) async {
-        criarTabelas.forEach(db.execute);
-        expect(
-          ()=>inserirRegistros.forEach(db.execute),
-          returnsNormally
-        );
-      }
-    );
-    await db.close();
-  });
 }

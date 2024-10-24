@@ -5,7 +5,7 @@ class Motorista{
   late String nome;
   late String telefone;
   late String senha;
-  late dynamic id;
+  late int id;
   late String email;
   late DtoMotorista dto;
   IDAOMotorista dao;

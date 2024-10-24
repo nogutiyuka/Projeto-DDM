@@ -6,7 +6,7 @@ import 'package:sqflite/sqflite.dart';
 class DaoPassageiroImpl implements IDAOPassageiro {
   late Database database;
   final String salvarSql = '''
-  INSERT INTO passageiro (nome, telefone, endereco_casa, apelido)
+  INSERT INTO passageiro (nome, telefone, id_endereco, apelido)
     VALUES (?, ?, ?, ?)
   ''';
 
@@ -15,7 +15,7 @@ class DaoPassageiroImpl implements IDAOPassageiro {
   ''';
 
   final String alterarSql = '''
-  UPDATE passageiro SET nome = ?, telefone = ?, endereco_casa = ?, apelido = ? WHERE id = ?;
+  UPDATE passageiro SET nome = ?, telefone = ?, id_endereco = ?, apelido = ? WHERE id = ?;
   ''';
 
   final String deletarSql = '''
@@ -34,16 +34,16 @@ class DaoPassageiroImpl implements IDAOPassageiro {
   @override
   Future<List<DtoPassageiro>> buscarTodos() async {
     database = await Conexao.iniciar();
-    return database.rawQuery(listarSql).then((value) {
-      return value
-          .map((e) => DtoPassageiro(
-              id: e['id'],
-              nome: e['nome'] as String,
-              telefone: e['estado'] as String,
-              enderecoCasa: e['endereco_casa'] as dynamic,
-              apelido: e['apelido'] as String))
-          .toList();
+    var resultado = await database.rawQuery(listarSql);
+    List<DtoPassageiro> passageiros = List.generate(resultado.length, (i) {
+        var linha = resultado[i];
+        return DtoPassageiro(
+              nome: linha['nome'].toString(),
+              telefone: linha['estado'].toString(),
+              enderecoCasa: linha['id_endereco'] as dynamic,
+              apelido: linha['apelido'].toString());
     });
+    return passageiros;
   }
 
   @override
@@ -59,5 +59,5 @@ class DaoPassageiroImpl implements IDAOPassageiro {
   void deletarPorID(id) async {
     database = await Conexao.iniciar();
     database.rawDelete(deletarSql, [id]);
-  }
+    }
 }

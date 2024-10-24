@@ -1,6 +1,5 @@
 import 'package:app_motorista/app/banco/sqlite/conexao.dart';
 import 'package:app_motorista/app/dominio/dto/dominio/dtoMotorista.dart';
-import 'package:app_motorista/app/dominio/dto/dominio/dto_passageiro.dart';
 import 'package:app_motorista/app/dominio/interface/IDAOMotorista.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -29,20 +28,22 @@ class DaoMotoristaImpl implements IDAOMotorista {
     int id = await database.rawInsert(
         salvarSql, [dto.nome, dto.telefone, dto.senha, dto.email]);
     dto.id = id;
+    print('Salvando motorista: ${dto.nome}, ${dto.email}');
     return dto;
   }
 
   @override
   Future<List<DtoMotorista>> buscarTodos() async {
     database = await Conexao.iniciar();
+    print('Buscando todos os motoristas...');
     return database.rawQuery(listarSql).then((value) {
       return value
           .map((e) => DtoMotorista(
-              id: e['id'],
+              id: int.parse(e['id'].toString()),
               nome: e['nome'] as String,
-              telefone: e['estado'] as String,
-              senha: e['endereco_casa'] as dynamic,
-              email: e['apelido'] as String))
+              telefone: e['telefone'] as String,
+              senha: e['senha'] as String,
+              email: e['email'] as String))
           .toList();
     });
   }

@@ -31,7 +31,7 @@ const criarTabelas = [
       ,apelido VARCHAR(250)
       ,id_endereco INTEGER NOT NULL, FOREIGN KEY(id_endereco) REFERENCES endereco(id) ON DELETE CASCADE
     )
-  '''
+  ''',
   '''
       CREATE TABLE motorista(
       id INTEGER NOT NULL PRIMARY KEY
@@ -41,4 +41,25 @@ const criarTabelas = [
       ,email VARCHAR(50) NOT NULL
     )
   '''
+];
+
+const inserirDados = [
+  '''
+    INSERT INTO estado (nome, sigla) 
+    VALUES ('Paraná', 'PR');
+  ''',
+  '''
+    INSERT INTO cidade (nome, id_estado) 
+    VALUES ('Paranavaí', (SELECT id FROM estado WHERE nome = 'Paraná'));
+  ''',
+  '''
+    INSERT INTO endereco (rua, numero, bairro, id_cidade) 
+    VALUES ('Luiz Lorenzett', '1526', 'Jardim Prudente', 
+    (SELECT id FROM cidade WHERE nome = 'Paranavaí'));
+  ''',
+  '''
+    INSERT INTO passageiro (nome, telefone, id_endereco) 
+    VALUES ('Rogério Luiz', '44988885562', 
+    (SELECT id FROM endereco WHERE rua = 'Luiz Lorenzett'));
+  '''
 ];

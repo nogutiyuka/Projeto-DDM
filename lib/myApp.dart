@@ -1,4 +1,4 @@
-import 'package:app_motorista/app/widget/listaPassageiro.dart';
+import 'package:app_motorista/app/widget/listaMotorista.dart';
 import 'package:flutter/material.dart';
 import 'package:app_motorista/app/rotas/rotas.dart';
 
@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget{
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primarySwatch: Colors.blue),
       routes: {
-        Rotas.home: (context) => const ListaPassageiro()
+        Rotas.home: (context) => const ListaMotorista()
       }
     );
   }

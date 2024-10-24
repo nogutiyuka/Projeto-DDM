@@ -6,7 +6,7 @@ class DTOEndereco{
   late int numero;
   late String bairro;
   late String? apelidoEndereco;
-  late DTOCidade cidade;
+  late dynamic cidade;
 
   DTOEndereco({this.id, required this.rua, required this.numero, required this.cidade, required this.bairro, this.apelidoEndereco});
 }
