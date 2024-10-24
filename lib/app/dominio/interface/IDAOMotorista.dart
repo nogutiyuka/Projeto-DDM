@@ -4,5 +4,5 @@ abstract class IDAOMotorista{
   Future<DtoMotorista>salvar(DtoMotorista dto);
   Future<List<DtoMotorista>> buscarTodos();
   Future<DtoMotorista> alterar(DtoMotorista dto);
-  void deletarPorID(dynamic id);
+  void deletarPorID(int id);
 }

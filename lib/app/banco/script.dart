@@ -61,5 +61,25 @@ const inserirDados = [
     INSERT INTO passageiro (nome, telefone, id_endereco) 
     VALUES ('Rogério Luiz', '44988885562', 
     (SELECT id FROM endereco WHERE rua = 'Luiz Lorenzett'));
+  ''',
+'''
+    INSERT INTO motorista (nome, telefone, senha, email) 
+    VALUES ('Rogério Luiz', '44988885562', '1234', 'rogerio@gmail.com');
+  ''',
+'''
+    INSERT INTO motorista (nome, telefone, senha, email) 
+    VALUES ('Celso Silva', '44998889898', '5689', 'celso@gmail.com');
+  ''',
+'''
+    INSERT INTO motorista (nome, telefone, senha, email) 
+    VALUES ('Henrique Oliveira', '44998886589', '7459', 'henrique@gmail.com');
+  ''',
+'''
+    INSERT INTO motorista (nome, telefone, senha, email) 
+    VALUES ('Dickson Barros', '44997856245', '5241', 'dinckson@gmail.com');
+  ''',
+'''
+    INSERT INTO motorista (nome, telefone, senha, email) 
+    VALUES ('Paula Matos', '4496587241', '3578', 'paula@gmail.com');
   '''
 ];

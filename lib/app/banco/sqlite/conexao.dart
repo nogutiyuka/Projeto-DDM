@@ -7,7 +7,7 @@ class Conexao {
 
   static Future<Database> iniciar() async {
     var path = join(await getDatabasesPath(), 'banco.db');
-    //await deleteDatabase(path);
+    await deleteDatabase(path);
     _db = await openDatabase(
       path,
       version: 1,
