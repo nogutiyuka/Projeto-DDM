@@ -18,20 +18,19 @@ class CadastroMotorista extends StatelessWidget {
           child: Text(rotulo));
     }
 
-    void _criarProcedimento() async {
+    Future<void> criarMotorista() async {
       if (_cadastroKey.currentState!.validate()) {
         final nome = _nomeController.text;
         final telefone = _telefoneController.text;
-        final senha = _senhaController.text; 
+        final senha = _senhaController.text;
         final email = _emailController.text;
 
         DtoMotorista dto = DtoMotorista(
           nome: nome,
           telefone: telefone,
-          senha: senha, 
-          email: email 
+          senha: senha,
+          email: email,
         );
-
 
         ApMotorista apMotorista = ApMotorista();
         await apMotorista.salvar(dto);
@@ -79,27 +78,37 @@ class CadastroMotorista extends StatelessWidget {
               ),
               TextFormField(
                 controller: _senhaController,
-                decoration: InputDecoration(labelText: 'senha'),
+                decoration: InputDecoration(labelText: 'Senha'),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Informe a senha';
                   }
                   return null;
                 },
+                obscureText: true, 
               ),
               TextFormField(
                 controller: _emailController,
-                decoration: InputDecoration(labelText: 'email (opcional)'),
+                decoration: InputDecoration(labelText: 'Email'),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Informe o email';
+                  }
+                  return null;
+                },
               ),
               SizedBox(height: 20),
               ElevatedButton(
-                onPressed: _criarProcedimento,
+                onPressed: () async {
+                  await criarMotorista();
+                  Navigator.pop(context); // Chama a função ao pressionar o botão
+                },
                 child: Text('Salvar'),
               ),
             ],
           ),
         ),
-    ),
-);
+      ),
+    );
   }
 }
