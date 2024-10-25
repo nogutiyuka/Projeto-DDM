@@ -28,7 +28,7 @@ class DaoMotoristaImpl implements IDAOMotorista {
     int id = await database.rawInsert(
         salvarSql, [dto.nome, dto.telefone, dto.senha, dto.email]);
     dto.id = id;
-    print('Salvando motorista: ${dto.nome}, ${dto.email}');
+    print('Motorista salvo com ID: $id');
     return dto;
   }
 
