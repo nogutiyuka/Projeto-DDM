@@ -15,12 +15,15 @@ class DaoEstadoImpl implements IDAOEstado {
   ''';
 
   final String alterarSql = '''
-  UPDATE estado SET nome = ?, singla = ? WHERE id = ?;
+  UPDATE estado SET nome = ?, sigla = ? WHERE id = ?;
   ''';
 
   final String deletarSql = '''
   DELETE FROM estado WHERE id = ?;
   ''';
+  final String listarPorId = '''
+  SELECT * FROM estado WHERE id = ?;
+''';
 
   @override
   Future<DTOEstado> salvar(DTOEstado dto) async {
@@ -33,7 +36,22 @@ class DaoEstadoImpl implements IDAOEstado {
   @override
   Future<List<DTOEstado>> buscarTodos() async {
     database = await Conexao.iniciar();
+    print("buscando os dados de estado");
     return database.rawQuery(listarSql).then((value) {
+      return value
+          .map((e) => DTOEstado(
+              id: e['id'],
+              nome: e['nome'] as String,
+              sigla: e['sigla'] as String))
+          .toList();
+    });
+  }
+
+    @override
+  Future<List<DTOEstado>> buscarPorId() async {
+    database = await Conexao.iniciar();
+    print("buscando os dados de estado por Id");
+    return database.rawQuery(listarPorId).then((value) {
       return value
           .map((e) => DTOEstado(
               id: e['id'],

@@ -53,6 +53,10 @@ const inserirDados = [
     VALUES ('Paranavaí', (SELECT id FROM estado WHERE nome = 'Paraná'));
   ''',
   '''
+    INSERT INTO cidade (nome, id_estado) 
+    VALUES ('Maringá', (SELECT id FROM estado WHERE nome = 'Paraná'));
+  ''',
+  '''
     INSERT INTO endereco (rua, numero, bairro, id_cidade) 
     VALUES ('Luiz Lorenzett', '1526', 'Jardim Prudente', 
     (SELECT id FROM cidade WHERE nome = 'Paranavaí'));
@@ -61,6 +65,26 @@ const inserirDados = [
     INSERT INTO passageiro (nome, telefone, id_endereco) 
     VALUES ('Rogério Luiz', '44988885562', 
     (SELECT id FROM endereco WHERE rua = 'Luiz Lorenzett'));
+  ''',
+  '''
+    INSERT INTO endereco (rua, numero, bairro, id_cidade) 
+    VALUES ('Antonio Felipe', '1526', 'Centro', 
+    (SELECT id FROM cidade WHERE nome = 'Paranavaí'));
+  ''',
+  '''
+    INSERT INTO passageiro (nome, telefone, id_endereco) 
+    VALUES ('Laura Gonçalo', '44995687415', 
+    (SELECT id FROM endereco WHERE rua = 'Antonio Felipe'));
+  ''',
+  '''
+    INSERT INTO endereco (rua, numero, bairro, id_cidade) 
+    VALUES ('José Felipe Tequinha', '7589', 'Jardim das Nações', 
+    (SELECT id FROM cidade WHERE nome = 'Paranavaí'));
+  ''',
+  '''
+    INSERT INTO passageiro (nome, telefone, id_endereco) 
+    VALUES ('Eduardo Felipe Dias', '44998657584', 
+    (SELECT id FROM endereco WHERE rua = 'José Felipe Tequinha'));
   ''',
 '''
     INSERT INTO motorista (nome, telefone, senha, email) 

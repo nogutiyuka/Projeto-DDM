@@ -18,6 +18,11 @@ class Estado{
     return dao.buscarTodos();
   }
 
+  Future<List<DTOEstado>> buscarPorId() async {
+    return dao.buscarTodos();
+  }
+
+
   Future<DTOEstado> alterar(DTOEstado dto) async {
     return dao.alterar(dto);
   }

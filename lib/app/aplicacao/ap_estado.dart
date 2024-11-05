@@ -19,6 +19,10 @@ class ApEstado {
     return await estado.buscarTodos();
   }
 
+  Future<List<DTOEstado>> buscarPorId() async {
+    return await estado.buscarPorId();
+  }
+
   Future<DTOEstado> alterar(DTOEstado dto) async {
     return await estado.alterar(dto);
   }

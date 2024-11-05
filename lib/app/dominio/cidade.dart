@@ -18,7 +18,6 @@ class Cidade {
   Future<List<DTOCidade>> buscarTodos() async {
     return dao.buscarTodos();
   }
-
   Future<DTOCidade> alterar(DTOCidade dto) async {
     return dao.alterar(dto);
   }

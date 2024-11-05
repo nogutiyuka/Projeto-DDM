@@ -1,4 +1,8 @@
 import 'package:app_motorista/app/widget/cadastroMotorista.dart';
+import 'package:app_motorista/app/widget/listaCidade.dart';
+import 'package:app_motorista/app/widget/listaEndereco.dart';
+import 'package:app_motorista/app/widget/listaEstado.dart';
+import 'package:app_motorista/app/widget/listaPassageiro.dart';
 import 'package:flutter/material.dart';
 import 'package:app_motorista/app/dominio/dto/dominio/dtoMotorista.dart';
 import 'package:app_motorista/app/aplicacao/ap_motorista.dart';
@@ -33,6 +37,18 @@ class ListaMotorista extends StatelessWidget {
                 context,
                 MaterialPageRoute(
                   builder: (context) => CadastroMotorista(), // Chame a sua tela de cadastro aqui
+                ),
+              );
+            },
+          ),
+          IconButton(
+            icon: Icon(Icons.add),
+            onPressed: () {
+              // Navega para a página de cadastro de motorista
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ListaPassageiro(), // Chame a sua tela de cadastro aqui
                 ),
               );
             },
