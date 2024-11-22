@@ -1,4 +1,6 @@
 import 'package:app_motorista/app/widget/cadastroMotorista.dart';
+import 'package:app_motorista/app/widget/home.dart';
+import 'package:app_motorista/app/widget/listaMotorista.dart';
 import 'package:flutter/material.dart';
 
 class Login extends StatefulWidget {
@@ -6,7 +8,7 @@ class Login extends StatefulWidget {
   _LoginState createState() => _LoginState();
 }
 
-class _LoginState extends State<Login> {
+class _LoginState extends State<Login> { //para carregar todos os estados
   final _formKey = GlobalKey<FormState>();
 
 @override
@@ -62,8 +64,15 @@ Widget build(BuildContext context) {
 
                     // Login
                     ElevatedButton(
-                      onPressed: () {},
-                      child: Text('Entrar'),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => Home(),
+                          ),
+                        );
+                      },
+                      child: Text('Login'),
                     ),
 
                     // Cadastro

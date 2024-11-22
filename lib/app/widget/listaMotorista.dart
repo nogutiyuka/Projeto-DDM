@@ -1,7 +1,4 @@
 import 'package:app_motorista/app/widget/cadastroMotorista.dart';
-import 'package:app_motorista/app/widget/listaCidade.dart';
-import 'package:app_motorista/app/widget/listaEndereco.dart';
-import 'package:app_motorista/app/widget/listaEstado.dart';
 import 'package:app_motorista/app/widget/listaPassageiro.dart';
 import 'package:flutter/material.dart';
 import 'package:app_motorista/app/dominio/dto/dominio/dtoMotorista.dart';
@@ -89,6 +86,7 @@ class ListaMotorista extends StatelessWidget {
           }
         },
       ),
+      
     );
   }
 }
